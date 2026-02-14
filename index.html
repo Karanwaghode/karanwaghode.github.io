@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Portfolio - Infrastructure Penetration Testing</title>
+    <style>
+        :root {
+            --color-background: #0f1419;
+            --color-surface: #1a202c;
+            --color-border: #2d3748;
+            --color-primary: #10b981;
+            --color-primary-hover: #059669;
+            --color-accent: #3b82f6;
+            --color-text: #e2e8f0;
+            --color-text-secondary: #a0aec0;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-mono: 'Courier New', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 20%;
+            right: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: 10%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-primary);
+            color: #000;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--color-text);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            border-radius: 2px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .skill-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
+        }
+
+        .skill-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tag {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--color-primary);
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.3rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.2));
+            padding: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .project-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .project-description {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tool-tag {
+            background: var(--color-border);
+            color: var(--color-text-secondary);
+            padding: 0.25rem 0.6rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            padding-left: 3rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            border: 3px solid var(--color-background);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: var(--color-border);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-item h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .contact-item h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--color-text-secondary);
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                gap: 0.75rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">SECURITY</div>
+            <ul>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Infrastructure Security Specialist</h1>
+            <p class="tagline">Penetration Testing | Network Security | Vulnerability Assessment</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Core Competencies</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>🔓 Penetration Testing</h3>
+                <div class="skill-tags">
+                    <span class="tag">Metasploit</span>
+                    <span class="tag">Nmap</span>
+                    <span class="tag">Burp Suite</span>
+                    <span class="tag">Kali Linux</span>
+                    <span class="tag">Exploitation</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>🛡️ Network Security</h3>
+                <div class="skill-tags">
+                    <span class="tag">Firewalls</span>
+                    <span class="tag">pfSense/OPNsense</span>
+                    <span class="tag">IDS/IPS</span>
+                    <span class="tag">VPN</span>
+                    <span class="tag">SIEM</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>⚙️ Infrastructure</h3>
+                <div class="skill-tags">
+                    <span class="tag">Proxmox</span>
+                    <span class="tag">VMware</span>
+                    <span class="tag">Linux</span>
+                    <span class="tag">Cisco</span>
+                    <span class="tag">Cloud Security</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>🔧 Tools & Technologies</h3>
+                <div class="skill-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Bash/Shell</span>
+                    <span class="tag">Git</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Automation</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>📊 Vulnerability Assessment</h3>
+                <div class="skill-tags">
+                    <span class="tag">Nessus</span>
+                    <span class="tag">Qualys</span>
+                    <span class="tag">OpenVAS</span>
+                    <span class="tag">Risk Analysis</span>
+                    <span class="tag">Remediation</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>🎓 Certifications</h3>
+                <div class="skill-tags">
+                    <span class="tag">OSCP Ready</span>
+                    <span class="tag">CEH Prepared</span>
+                    <span class="tag">Security+</span>
+                    <span class="tag">CCNA</span>
+                    <span class="tag">Active Learning</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Key Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Network Penetration Testing Lab</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin: 0;">Infrastructure Assessment</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Built a comprehensive lab environment with multiple network segments, firewalls, and security appliances. Conducted full-scope penetration testing including reconnaissance, scanning, exploitation, and post-exploitation analysis.
+                    </p>
+                    <div class="project-tools">
+                        <span class="tool-tag">Kali Linux</span>
+                        <span class="tool-tag">Proxmox</span>
+                        <span class="tool-tag">Metasploit</span>
+                        <span class="tool-tag">Wireshark</span>
+                        <span class="tool-tag">pfSense</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Vulnerability Assessment Framework</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin: 0;">Security Assessment Tool</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Developed automated scanning framework for vulnerability assessment across infrastructure. Integrated Nessus and OpenVAS with custom Python scripts for reporting and remediation tracking.
+                    </p>
+                    <div class="project-tools">
+                        <span class="tool-tag">Python</span>
+                        <span class="tool-tag">Nessus API</span>
+                        <span class="tool-tag">OpenVAS</span>
+                        <span class="tool-tag">Bash</span>
+                        <span class="tool-tag">SQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Wireless Security Assessment</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin: 0;">802.1x & WPA Security</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Comprehensive wireless network security testing including 802.1x authentication, WPA/WPA2/WPA3 encryption, rogue AP detection, and client security assessment. Documentation of findings and remediation strategies.
+                    </p>
+                    <div class="project-tools">
+                        <span class="tool-tag">Aircrack-ng</span>
+                        <span class="tool-tag">Hashcat</span>
+                        <span class="tool-tag">Hcxtools</span>
+                        <span class="tool-tag">Wireshark</span>
+                        <span class="tool-tag">GPU Acceleration</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Firewall Configuration & Hardening</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin: 0;">Security Appliance Management</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Designed and deployed enterprise firewall policies with advanced filtering, intrusion prevention, and threat detection. Zero-trust architecture implementation and continuous security monitoring.
+                    </p>
+                    <div class="project-tools">
+                        <span class="tool-tag">pfSense</span>
+                        <span class="tool-tag">OPNsense</span>
+                        <span class="tool-tag">Suricata</span>
+                        <span class="tool-tag">Snort</span>
+                        <span class="tool-tag">Monitoring</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Custom Security Tooling</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin: 0;">Automation & Scripting</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Developed custom Python scripts and Bash utilities for network reconnaissance, credential cracking, log analysis, and automated vulnerability discovery. GPU-accelerated password testing tools.
+                    </p>
+                    <div class="project-tools">
+                        <span class="tool-tag">Python</span>
+                        <span class="tool-tag">Bash</span>
+                        <span class="tool-tag">CUDA</span>
+                        <span class="tool-tag">Git</span>
+                        <span class="tool-tag">CI/CD</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Lab Environment Automation</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin: 0;">Infrastructure as Code</p>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Automated deployment of complex lab environments using Infrastructure as Code principles. Multi-VM configurations, network topology setup, and security appliance provisioning in Proxmox and VMware.
+                    </p>
+                    <div class="project-tools">
+                        <span class="tool-tag">Terraform</span>
+                        <span class="tool-tag">Ansible</span>
+                        <span class="tool-tag">Docker</span>
+                        <span class="tool-tag">Proxmox API</span>
+                        <span class="tool-tag">Scripting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Professional Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Infrastructure Penetration Tester</h3>
+                <p class="timeline-date">2022 - Present</p>
+                <p>Conducting comprehensive security assessments for enterprise infrastructure. Specializing in network architecture analysis, firewall testing, and vulnerability discovery.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Network Security Engineer</h3>
+                <p class="timeline-date">2020 - 2022</p>
+                <p>Designed and implemented enterprise security solutions including firewalls, IDS/IPS systems, and security policies. Led infrastructure hardening initiatives.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Linux Systems Administrator</h3>
+                <p class="timeline-date">2018 - 2020</p>
+                <p>Managed virtualized infrastructure using Proxmox and VMware. Implemented system security best practices and monitoring solutions.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Security Enthusiast & Lab Builder</h3>
+                <p class="timeline-date">2015 - 2018</p>
+                <p>Built comprehensive lab environments for continuous learning. Participated in CTF challenges and security research projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-content">
+            <p style="color: var(--color-text-secondary); margin-bottom: 2rem;">
+                I'm always interested in discussing cybersecurity challenges, infrastructure design, and penetration testing opportunities. Feel free to reach out for consultations, collaborations, or technical discussions.
+            </p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                </div>
+                <div class="contact-item">
+                    <h3>LinkedIn</h3>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a>
+                </div>
+                <div class="contact-item">
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/yourprofile" target="_blank">github.com/yourprofile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Security Portfolio. All rights reserved. | Built with focus on cybersecurity excellence.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 20px rgba(16, 185, 129, 0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
