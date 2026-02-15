@@ -277,6 +277,135 @@
             .nav-links { display: none; }
             .section-title { font-size: 1.5rem; }
         }
+		
+		
+		/* ================================
+   AUTO THEME (LIGHT/DARK SYSTEM)
+================================ */
+
+:root {
+    color-scheme: dark light;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --card-hover: #eef3f9;
+        --border: #d0d7de;
+        --primary: #0077ff;
+        --secondary: #0099cc;
+        --alert: #d11a2a;
+        --text: #0b1220;
+        --dim: #5b6573;
+    }
+
+    body {
+        background-image:
+            linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    }
+
+    .terminal-window {
+        background: #ffffff;
+        color: #000;
+    }
+}
+
+/* ================================
+   SMOOTH FADE‑IN ANIMATION
+================================ */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================================
+   GLOW EFFECTS
+================================ */
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--x,50%) var(--y,50%),
+        rgba(0,255,156,0.15), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+/* ================================
+   NAV SCROLL EFFECT
+================================ */
+
+nav.scrolled {
+    background: rgba(5,10,16,0.6);
+    box-shadow: 0 0 20px rgba(0,255,156,0.2);
+}
+
+/* ================================
+   HERO TEXT GLOW ANIMATION
+================================ */
+
+.glitch-text {
+    animation: glowPulse 3s infinite alternate;
+}
+
+@keyframes glowPulse {
+    from {
+        text-shadow:
+            0 0 10px rgba(0,255,156,0.3),
+            0 0 20px rgba(0,195,255,0.2);
+    }
+    to {
+        text-shadow:
+            0 0 20px rgba(0,255,156,0.7),
+            0 0 40px rgba(0,195,255,0.5);
+    }
+}
+
+/* ================================
+   BUTTON RIPPLE EFFECT
+================================ */
+
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn span.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    background: rgba(255,255,255,0.5);
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ================================
+   PARALLAX EFFECT
+================================ */
+
+.hero {
+    background-attachment: fixed;
+}
     </style>
 </head>
 <body>
@@ -879,6 +1008,77 @@
                 closeModal();
             }
         }
+		
+	/* ================================
+   AUTO FADE‑IN ON SCROLL
+================================ */
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+});
+
+setTimeout(()=>{
+    document.querySelectorAll('.card, .job-card, .section-header').forEach(el=>{
+        el.classList.add('fade-in');
+        observer.observe(el);
+    });
+},500);
+
+/* ================================
+   NAV SCROLL EFFECT
+================================ */
+
+window.addEventListener('scroll', ()=>{
+    const nav = document.querySelector('nav');
+    if(window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+});
+
+/* ================================
+   CARD GLOW TRACK MOUSE
+================================ */
+
+
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--x', e.clientX - rect.left + 'px');
+        card.style.setProperty('--y', e.clientY - rect.top + 'px');
+    });
+});
+
+/* ================================
+   RIPPLE EFFECT
+================================ */
+
+
+document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        const circle = document.createElement('span');
+        circle.classList.add('ripple');
+
+        const rect = this.getBoundingClientRect();
+        circle.style.left = e.clientX - rect.left + 'px';
+        circle.style.top = e.clientY - rect.top + 'px';
+
+        this.appendChild(circle);
+
+        setTimeout(()=> circle.remove(), 600);
+    });
+});
+
+/* ================================
+   AUTO REDUCE EFFECTS ON MOBILE
+================================ */
+
+if(window.innerWidth < 768) {
+    document.getElementById('networkCanvas').style.opacity = "0.1";
+}
+	
     </script>
 </body>
 </html>
