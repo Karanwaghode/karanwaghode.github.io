@@ -192,6 +192,9 @@
 
         /* --- GRID CARDS (Skills) --- */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        /* Grid 4 for the 8 cards */
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
         .card { 
             background: var(--card); 
             border: 1px solid var(--border); 
@@ -200,12 +203,14 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         .card:hover { transform: translateY(-5px); border-color: var(--primary); background: var(--card-hover); }
         .card-icon { font-size: 2rem; color: var(--secondary); margin-bottom: 20px; }
-        .card h3 { margin: 0 0 10px; color: var(--text); font-family: var(--mono); }
-        .card p { color: var(--dim); font-size: 0.95rem; margin-bottom: 15px; }
-        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .card h3 { margin: 0 0 10px; color: var(--text); font-family: var(--mono); font-size: 1.1rem; }
+        .card p { color: var(--dim); font-size: 0.9rem; margin-bottom: 15px; flex-grow: 1; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
         .tag { 
             background: rgba(255,255,255,0.05); 
             color: var(--dim); 
@@ -278,21 +283,7 @@
 
     <canvas id="networkCanvas"></canvas>
 
-    <!-- SYSTEM WIDGET -->
-    <div class="system-widget">
-        <div class="widget-header">
-            <span><i class="fas fa-server"></i> BMC_OPS_MONITOR</span>
-            <span class="blink" style="color:var(--primary)">● ONLINE</span>
-        </div>
-        <div class="widget-row"><span>CORE_SW_01</span><span class="widget-val">UP (99.99%)</span></div>
-        <div class="widget-row"><span>FIREWALL_HA</span><span class="widget-val" style="color:var(--primary)">ACTIVE/PASSIVE</span></div>
-        <div class="widget-row"><span>VPN_TUNNELS</span><span class="widget-val">24/24 UP</span></div>
-        <div class="widget-row"><span>THREAT_LEVEL</span><span class="widget-val" style="color:var(--secondary)">LOW</span></div>
-        <div style="margin-top:10px; border-top:1px solid #333; paddingTop:5px; font-size:0.65rem; color:#666;">
-            SESSION ID: L2_ENG_8842<br>LOCATION: PUNE, IN
-        </div>
-    </div>
-
+    
     <!-- NAV -->
     <nav>
         <div class="nav-container">
@@ -312,10 +303,9 @@
         <div class="hero-container">
             <div>
                 <div class="hero-role">SENIOR NETWORK & SECURITY ENGINEER</div>
-                <h1 class="glitch-text">CORE NETWORK<br>INFRACTURE</h1>
+                <h1 class="glitch-text">Karan Vijay<br>Waghode</h1>
                 <p class="hero-desc">
-                    Specializing in <strong>Cisco ISE | DNAC | Palo Alto </strong> <strong>Sophos XG | Meraki | SD-WAN </strong> and <strong>Zero-Trust Architecture (ISE)</strong>. 
-                    Currently working in BMC Software India.
+                    Detail-oriented Network Engineer with 5.5+ years of experience in planning, deploying, and maintaining secure network infrastructure. Adept at configuring and managing Cisco switching, Cisco ISE, DNAC, enterprise wireless, and next-generation firewalls including Palo Alto and Sophos. Skilled in switch upgrades, wireless optimization, access control, and foundational firewall setup for SME and enterprise networks.
                 </p>
                 <div class="btn-group">
                     <a href="#experience" class="btn"><i class="fas fa-file-contract"></i> VIEW LOGS</a>
@@ -330,21 +320,32 @@
                 </div>
                 <div class="terminal-content">
                     <div class="cmd-line">
-                        <span class="cmd-prompt">root@core:~#</span> ./whoami.sh
+                        <span class="cmd-prompt">root@core:~#</span> ./Skills & TOOLS :-
                     </div>
                     <div class="cmd-out">
-                        > Role: L2/L3 Network Engineer<br>
-                        > Focus: Cisco ISE, DNAC, Palo Alto, Sophos<br>
-                        > Location: Pune, Maharashtra<br>
-                        > Status: <span style="color:var(--primary)">Available for Critical Ops</span>
+                        • Cisco ISE (Identity Services Engine) <br>
+                        • Cisco DNA- Center  <br>
+                        • Cisco Meraki <br>
+                        • HP Intelligent Management Center (IMC) <br>
+                        • TCP wave <br>
+                        • BlueCoat Packet Shaper <br>
+                        • Wireshark  <br>
+                        • Paloalto   <br>
+                        • Sophos<br>
                     </div>
                     <div class="cmd-line" style="margin-top:15px">
-                        <span class="cmd-prompt">root@core:~#</span> show ip interface brief | include Up
+                        <span class="cmd-prompt">root@core:~#</span> Monitoring Tools :-
                     </div>
                     <div class="cmd-out">
-                        Gi1/0/1   192.168.10.1   YES NVRAM  up/up<br>
-                        Te1/1/1   10.0.0.1       YES NVRAM  up/up (WAN)<br>
-                        Tu0       172.16.0.1     YES NVRAM  up/up (VPN)
+                          • SCOM 
+                          • SolarWinds  
+                          • LogicMonitor 
+                          • WhatsupGold  
+                          • Autometa 
+                          • Site 24x7   
+                          • PRTG 
+						  • Netreo
+						  • Entuity
                     </div>
                 </div>
             </div>
@@ -356,83 +357,114 @@
         <div class="logo-grid">
             <!-- Using WikiMedia SVGs for reliability or FontAwesome where appropriate -->
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Cisco_logo.svg" alt="Cisco" class="tech-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Palo_Alto_Networks_logo.png" alt="Palo Alto" class="tech-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/BMC_Software_logo.svg" alt="BMC" class="tech-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Sophos_logo.svg" alt="Sophos" class="tech-logo">
+            <img src="https://www.paloaltonetworks.com/content/dam/pan/en_US/images/bettertogether/hero-logo.svg" alt="Palo Alto" class="tech-logo">
+            <img src="https://cdn.f5.com/websites/support/resources/images/MyF5-logo-reverse-RGB.svg" alt="BMC" class="tech-logo">
+            <img src="https://meraki.cisco.com/wp-content/uploads/2020/04/cisco-meraki-logo-1024x200.png" alt="Sophos" class="tech-logo">
             <i class="devicon-python-plain icon-logo python-col" title="Python Automation"></i>
             <i class="devicon-linux-plain icon-logo" title="Linux/Kali"></i>
-            <i class="fas fa-shield-alt icon-logo" title="Security"></i>
         </div>
     </div>
 
-    <!-- CORE COMPETENCIES -->
+    <!-- CORE COMPETENCIES (UPDATED with 8 Categories) -->
     <section class="section">
         <div class="section-header">
             <span class="section-num">01.</span>
             <h2 class="section-title">CORE COMPETENCIES</h2>
         </div>
-        <div class="grid-3">
-            <div class="card" onclick="openModal('switching')">
-                <i class="fas fa-network-wired card-icon"></i>
-                <h3>Core Switching & Routing</h3>
-                <p>Expert management of Catalyst 9300/9500 stacks. Implementation of OSPF, BGP, VLANs, and VRF-Lite for segmentation.</p>
+        <div class="grid-4">
+            <!-- 1. Network Architecture -->
+            <div class="card" onclick="openModal('arch')">
+                <i class="fas fa-sitemap card-icon"></i>
+                <h3>Network Architecture</h3>
+                <p>LAN/WAN Design, Router/Switch Configuration, SD-WAN (Viptela), High Availability.</p>
                 <div class="tags">
-                    <span class="tag">L2/L3</span>
-                    <span class="tag">OSPF</span>
-                    <span class="tag">BGP</span>
-                    <span class="tag">VLAN</span>
+                    <span class="tag">SD-WAN</span>
+                    <span class="tag">HSRP/VRRP</span>
+                    <span class="tag">StackWise</span>
                 </div>
             </div>
-            <div class="card" onclick="openModal('firewall')">
-                <i class="fas fa-dungeon card-icon"></i>
-                <h3>Perimeter Security</h3>
-                <p>Configuration of Palo Alto and Sophos XGS firewalls. Deep Packet Inspection, SSL Decryption, and Site-to-Site VPNs.</p>
+
+            <!-- 2. Security & Identity -->
+            <div class="card" onclick="openModal('sec')">
+                <i class="fas fa-shield-alt card-icon"></i>
+                <h3>Security & Identity</h3>
+                <p>Cisco ISE, Palo Alto PAN-OS, Sophos XGS, Cisco FTD, Zero-Trust Implementation.</p>
                 <div class="tags">
+                    <span class="tag">ISE 802.1X</span>
                     <span class="tag">Palo Alto</span>
-                    <span class="tag">Sophos XGS</span>
-                    <span class="tag">IPSec VPN</span>
-                    <span class="tag">NAT</span>
+                    <span class="tag">VPN</span>
                 </div>
             </div>
-            <div class="card" onclick="openModal('ise')">
-                <i class="fas fa-id-badge card-icon"></i>
-                <h3>Identity Services (NAC)</h3>
-                <p>Zero-Trust implementation using Cisco ISE. 802.1X Wired/Wireless auth, Profiling, and Posture validation.</p>
-                <div class="tags">
-                    <span class="tag">Cisco ISE</span>
-                    <span class="tag">802.1X</span>
-                    <span class="tag">TACACS+</span>
-                    <span class="tag">TrustSec</span>
-                </div>
-            </div>
-            <div class="card" onclick="openModal('dnac')">
-                <i class="fas fa-project-diagram card-icon"></i>
-                <h3>Automation & SDA</h3>
-                <p>Software Defined Access (SDA) fabric management via DNA Center. Assurance monitoring and automated provisioning.</p>
+
+            <!-- 3. Automation & SDN -->
+            <div class="card" onclick="openModal('auto')">
+                <i class="fas fa-robot card-icon"></i>
+                <h3>Automation & SDN</h3>
+                <p>Cisco DNA Center (SDA Fabric, Assurance, SWIM), Meraki Dashboard.</p>
                 <div class="tags">
                     <span class="tag">DNAC</span>
-                    <span class="tag">SDA Fabric</span>
-                    <span class="tag">Python Scripts</span>
+                    <span class="tag">SDA</span>
+                    <span class="tag">Automation</span>
                 </div>
             </div>
-            <div class="card" onclick="openModal('monitor')">
-                <i class="fas fa-chart-line card-icon"></i>
-                <h3>Network Observability</h3>
-                <p>Proactive monitoring of 500+ nodes using SolarWinds and LogicMonitor. Custom dashboarding for executive reporting.</p>
+
+            <!-- 4. Wireless Networking -->
+            <div class="card" onclick="openModal('wireless')">
+                <i class="fas fa-wifi card-icon"></i>
+                <h3>Wireless Networking</h3>
+                <p>Cisco WLC (9800, 5520), Cisco Meraki, RF Tuning, High-Density Deployments.</p>
+                <div class="tags">
+                    <span class="tag">WLC 9800</span>
+                    <span class="tag">FlexConnect</span>
+                    <span class="tag">RF Tuning</span>
+                </div>
+            </div>
+
+            <!-- 5. Routing & Switching -->
+            <div class="card" onclick="openModal('rns')">
+                <i class="fas fa-network-wired card-icon"></i>
+                <h3>Routing & Switching</h3>
+                <p>Protocols: OSPF, BGP, EIGRP. Features: VLANs, VRF, STP, EtherChannel.</p>
+                <div class="tags">
+                    <span class="tag">OSPF</span>
+                    <span class="tag">BGP</span>
+                    <span class="tag">VRF</span>
+                </div>
+            </div>
+
+            <!-- 6. Hardware Proficiency -->
+            <div class="card" onclick="openModal('hardware')">
+                <i class="fas fa-server card-icon"></i>
+                <h3>Hardware Proficiency</h3>
+                <p>Switches: Catalyst 9k/Nexus. Routers: ISR 4000/3900 Series.</p>
+                <div class="tags">
+                    <span class="tag">Cat 9300/9500</span>
+                    <span class="tag">Nexus</span>
+                    <span class="tag">ISR 4431</span>
+                </div>
+            </div>
+
+            <!-- 7. Observability Tools -->
+            <div class="card" onclick="openModal('observe')">
+                <i class="fas fa-eye card-icon"></i>
+                <h3>Observability Tools</h3>
+                <p>SolarWinds, LogicMonitor, Wireshark Packet Analysis, BlueCoat.</p>
                 <div class="tags">
                     <span class="tag">SolarWinds</span>
-                    <span class="tag">LogicMonitor</span>
-                    <span class="tag">SNMP</span>
+                    <span class="tag">Wireshark</span>
+                    <span class="tag">NetFlow</span>
                 </div>
             </div>
-            <div class="card" onclick="openModal('tshoot')">
-                <i class="fas fa-tools card-icon"></i>
-                <h3>Advanced Troubleshooting</h3>
-                <p>Packet-level analysis using Wireshark. Resolving complex asymmetric routing and broadcast storms.</p>
+
+            <!-- 8. ITSM Platforms -->
+            <div class="card" onclick="openModal('itsm')">
+                <i class="fas fa-ticket-alt card-icon"></i>
+                <h3>ITSM Platforms</h3>
+                <p>ServiceNow, Jira, BMC Remedy, SummitAI.</p>
                 <div class="tags">
-                    <span class="tag">Wireshark</span>
-                    <span class="tag">Packet Capture</span>
-                    <span class="tag">Root Cause Analysis</span>
+                    <span class="tag">ServiceNow</span>
+                    <span class="tag">Jira</span>
+                    <span class="tag">Remedy</span>
                 </div>
             </div>
         </div>
@@ -450,8 +482,8 @@
             <div class="job-card">
                 <div class="job-header">
                     <div class="company-name">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/BMC_Software_logo.svg" alt="BMC" class="company-logo">
-                        BMC SOFTWARE INDIA
+                        <i class="fas fa-building company-logo" style="font-size:1.5rem; color:#aaa;"></i>
+                        BMC SOFTWARE, INC.
                     </div>
                     <span class="job-period">PRESENT | PUNE</span>
                 </div>
@@ -471,13 +503,31 @@
                         <i class="fas fa-building company-logo" style="font-size:1.5rem; color:#aaa;"></i>
                         WIRTGEN INDIA PVT. LTD.
                     </div>
-                    <span class="job-period">2024 - 2025</span>
+                    <span class="job-period">Oct-2024 - Nov-2025</span>
                 </div>
                 <div class="job-role">SENIOR NETWORK ENGINEER</div>
                 <ul class="job-details">
-                    <li>Deployed <strong>Cisco ISE</strong> with Active Directory integration for dynamic 802.1X authentication.</li>
-                    <li>Implemented <strong>Cisco DNAC</strong> for SDA (Software-Defined Access) fabric and network telemetry.</li>
-                    <li>Designed branch connectivity using Sophos XGS Firewalls with redundant VPN tunnels.</li>
+                    <li> Configured Cisco ISE for 802.1X wired/wireless policies, 
+                         integrated with Cisco WLC and switches. </li>
+                    <li>Deployed Cisco ISE with integrated AD and MDM solutions for 
+                         dynamic access control and posture validation. </li>
+                    <li> Leveraged Cisco DNAC for software-defined access (SDA), 
+                          network telemetry, and automated provisioning. </li>
+                    <li>Managed wireless deployments using Cisco WLCs, including 
+                         high-density venues. </li>
+                    <li> Designed and implemented Sophos XG/XGS Firewalls in branch 
+                         environments. </li>
+                    <li> Cisco Switches: Configuration, addition of new switches to 
+                         network, IOS upgrades, PoE provisioning, stacking, and patch 
+                         management. </li>
+                    <li>Cisco ISE: 802.1X, posture, guest access, TrustSec, pxGrid. </li>
+                    <li> Cisco DNAC: Automation, assurance, inventory, image 
+                         management. </li>
+                    <li>Palo Alto (PAN-OS): Basic configuration including interface 
+                         setup, security zones, NAT policies, security rules, objects, and 
+                         VPN setup. </li>
+                     <li> Sophos XG/XGS: Initial setup wizard, interface/VLAN config, 
+                         NAT/firewall rules, SSL VPN, IPS/web filtering policies.</li>
                     <li>Performed stack upgrades and patching for Cisco Catalyst 9300/9500 series switches.</li>
                 </ul>
             </div>
@@ -486,16 +536,34 @@
             <div class="job-card">
                 <div class="job-header">
                     <div class="company-name">
-                        <i class="fas fa-briefcase company-logo" style="font-size:1.5rem; color:#aaa;"></i>
-                        INSIZA (CLIENT: BAJAJ FINSERV)
+                        <i class="fas fa-building company-logo" style="font-size:1.5rem; color:#aaa;"></i>
+                        INSIZA TECHONOLOGIES PVT.LTD (CLIENT: BAJAJ FINSERV, TATA COMMUNICATION)
                     </div>
-                    <span class="job-period">2023 - 2024</span>
+                    <span class="job-period">Sep-2023 - Oct-2024</span>
                 </div>
                 <div class="job-role">NETWORK SUPPORT L2</div>
                 <ul class="job-details">
-                    <li>Managed <strong>Viptela SD-WAN</strong> overlay, optimizing application traffic steering.</li>
-                    <li>Reduced TACACS+ response times by 15% through optimized ISE policies.</li>
-                    <li>Developed Python scripts for automated BFD failover health checks.</li>
+                    <li>Updated network equipment to the latest firmware releases to ensure security and stability.</li>
+
+<li>Performed configuration and troubleshooting on Cisco devices, including Switches, SDWAN Routers, and Firewall FTD.</li>
+
+<li>Gained hands-on experience with Cisco ISE, including adding network devices for TACACS+, configuring policy sets, and monitoring event logs.</li>
+
+<li>Managed internet traffic shifting between Primary and Secondary links and DC to DR transitions.</li>
+
+<li>Identified and reviewed testing procedures for change and configuration management within production environments.</li>
+
+<li>Ensured 100% of production environments and data centers were equipped with the necessary resources to scale effectively.</li>
+
+<li>Improved incident response time by 15% by implementing an automated process to assign tickets to qualified engineers.</li>
+
+<li>Generated weekly network uptime reports for management review.</li>
+
+<li>Coordinated with ISP vendors to log cases and resolve link-related connectivity issues.</li>
+
+<li>Configured and restored Cisco 2960, 9200, and 9500 series switches, including backup drills, NAC (802.1X), and local SPAN capture.</li>
+
+<li>Managed and upgraded SDWAN (Viptela) controllers and branches, creating and modifying templates based on specific scenarios.</li>
                 </ul>
             </div>
 
@@ -503,31 +571,57 @@
             <div class="job-card">
                 <div class="job-header">
                     <div class="company-name">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Persistent_Systems_Logo.svg" alt="Persistent" class="company-logo">
-                        PERSISTENT SYSTEMS
+                        <i class="fas fa-building company-logo" style="font-size:1.5rem; color:#aaa;"></i>
+                        PERSISTENT SYSTEMS LTD
                     </div>
-                    <span class="job-period">2022 - 2023</span>
+                    <span class="job-period">April-2022 - Jully-2023</span>
                 </div>
                 <div class="job-role">NETWORK ENGINEER L2</div>
                 <ul class="job-details">
-                    <li>RF Tuning for Cisco 9800 WLCs to improve wireless density and performance.</li>
-                    <li>Implemented L2 security guards (Root Guard, BPDU Guard) to prevent STP loops.</li>
+                    <li>Configured and upgraded Cisco switches, Wireless LAN Controllers (WLC), and routers.</li>
+
+<li>Provided real-time network support to end-users via chat and phone calls.</li>
+
+<li>Maintained detailed service request reports for management oversight.</li>
+
+<li>Strictly followed change management processes before implementing configuration changes on network devices.</li>
+
+<li>Streamlined LAN/WAN troubleshooting and monitoring activities to improve overall network up-time.</li>
+
+<li>Ensured all infrastructure changes were approved and successful by adhering to established configuration policies.</li>
+
+<li>Maximized network performance through consistent monitoring and proactive troubleshooting.</li>
+
+<li>Managed Cisco VLANs, VLAN tagging, LACP, Trunking, STP, and VTP.</li>
+
+<li>Reduced network downtime by 11% through the implementation of regular alerting and performance monitoring.</li>
+
+<li>Configured and managed L2/L3 VLANs, EtherChannel, and Spanning Tree Protocol on Cisco switching infrastructure.</li>
                 </ul>
             </div>
             
-             <!-- SERUM -->
+             <!-- SATYAJEET INDIA -->
              <div class="job-card">
                 <div class="job-header">
                     <div class="company-name">
-                        <i class="fas fa-flask company-logo" style="font-size:1.5rem; color:#aaa;"></i>
-                        SERUM INSTITUTE OF INDIA
+                        <i class="fas fa-building company-logo" style="font-size:1.5rem; color:#aaa;"></i>
+                        SATYAJEET INDIA ENTERPRISES PVT.LTD
                     </div>
-                    <span class="job-period">2020 - 2022</span>
+                    <span class="job-period">2021 - 2022</span>
                 </div>
-                <div class="job-role">NETWORK SUPPORT</div>
+                <div class="job-role">NETWORK & DESKTOP SUPPORT ENGINEER</div>
                 <ul class="job-details">
-                    <li>Provided critical L1/L2 support for high-demand vaccine production networks during COVID-19.</li>
-                    <li>Installed and commissioned edge switches and Wireless Access Points (APs).</li>
+                    <li>Provided remote technical support, testing, and troubleshooting for network infrastructure.</li>
+
+<li>Installed and administered network equipment and configurations.</li>
+
+<li>Arranged scheduled upgrades and performed deep-dive investigations into network faults.</li>
+
+<li>Modified infrastructure to support changing customer needs and scalability requirements.</li>
+
+<li>Conducted initial requirement capture by communicating directly with customers via email and phone.</li>
+
+<li>Tested and repaired physical network components to ensure optimal hardware performance.</li>
                 </ul>
             </div>
 
@@ -565,12 +659,12 @@
         <div class="grid-3">
              <div class="card">
                 <i class="fas fa-graduation-cap card-icon"></i>
-                <h3>B.Tech E&TC</h3>
+                <h3>B.Tech Electronics & Telecommunication</h3>
                 <p>Bhagwant Institute of Technology (DBATU)<br>Barshi, Solapur</p>
             </div>
             <div class="card">
                 <i class="fas fa-university card-icon"></i>
-                <h3>Diploma Computer Eng.</h3>
+                <h3>Diploma Computer Engineering</h3>
                 <p>Jayawantrao Sawant Polytechnic<br>Hadapsar, Pune (2016-2020)</p>
             </div>
             <div class="card">
@@ -656,107 +750,110 @@
         }
         animate();
 
-        // MODAL LOGIC
+        // MODAL LOGIC - UPDATED DATA
         const modalData = {
-            switching: {
-                title: "CORE SWITCHING OPS",
-                body: `<p>Managing high-availability stacks for Enterprise Core.</p>
-                       <div class="modal-cmd">
-                           <span>switch#</span> show switch detail<br>
-                           <span>switch#</span> show etherchannel summary<br>
-                           <span>switch#</span> show spanning-tree vlan 10
-                       </div>
+            arch: {
+                title: "NETWORK ARCHITECTURE",
+                body: `<p>Comprehensive Design & Deployment</p>
                        <ul>
-                           <li>Configuring VSS/StackWise Virtual for redundancy.</li>
-                           <li>Hardening Layer 2 with DHCP Snooping, DAI, and Port Security.</li>
-                           <li>QoS implementation for VoIP and Video traffic prioritization.</li>
+                           <li>LAN/WAN Design</li>
+                           <li>Router/Switch Configuration</li>
+                           <li>SD-WAN (Viptela)</li>
+                           <li>High Availability (HSRP, VRRP, GLBP)</li>
+                           <li>StackWise Virtual</li>
                        </ul>`
             },
-            firewall: {
-                title: "FIREWALL & PERIMETER",
-                body: `<p>Palo Alto & Sophos configuration for edge security.</p>
-                       <div class="modal-cmd">
-                           <span>admin@PA-VM></span> show system info<br>
-                           <span>admin@PA-VM></span> show session info<br>
-                           <span>admin@PA-VM></span> show vpn ipsec-sa
-                       </div>
+            sec: {
+                title: "SECURITY & IDENTITY",
+                body: `<p>Zero-Trust & Perimeter Defense</p>
                        <ul>
-                           <li>Creating Security Policies based on App-ID and User-ID.</li>
-                           <li>Configuring NAT (Source/Destination) for public-facing services.</li>
-                           <li>Troubleshooting VPN Phase 1/2 mismatches using packet captures.</li>
+                           <li><strong>Cisco ISE:</strong> 802.1X, Profiling, Posture, Guest Portals, TACACS+</li>
+                           <li><strong>Palo Alto PAN-OS:</strong> Zones, NAT, VPN</li>
+                           <li><strong>Sophos XGS:</strong> SSL VPN, IPS</li>
+                           <li><strong>Cisco FTD:</strong> Threat Defense</li>
                        </ul>`
             },
-            ise: {
-                title: "CISCO ISE & NAC",
-                body: `<p>Identity Management for 1000+ Endpoints.</p>
-                       <div class="modal-cmd">
-                           <span>ise/admin#</span> show application status ise<br>
-                           <span>ise/admin#</span> show logging application prrt-server.log tail
-                       </div>
+            auto: {
+                title: "AUTOMATION & SDN",
+                body: `<p>Modern Network Operations</p>
                        <ul>
-                           <li>Designing Authorization Profiles (dACLs, VLAN assignments).</li>
-                           <li>Implementing Profiling policies for IoT/Camera detection.</li>
-                           <li>Guest Portal management with Sponsor approval workflows.</li>
+                           <li><strong>Cisco DNA Center:</strong> SDA Fabric, Assurance, Automation, SWIM</li>
+                           <li><strong>Meraki Dashboard:</strong> Cloud Management</li>
                        </ul>`
             },
-            dnac: {
-                title: "DNA CENTER & AUTOMATION",
-                body: `<p>Automated provisioning and assurance.</p>
+            wireless: {
+                title: "WIRELESS NETWORKING",
+                body: `<p>High-Performance Wi-Fi</p>
                        <ul>
-                           <li><strong>SDA Fabric:</strong> Managing Border/Control nodes and Edge nodes.</li>
-                           <li><strong>Assurance:</strong> Monitoring Client Health scores and Application Health.</li>
-                           <li><strong>SWIM:</strong> Automated Image Management for fleet upgrades.</li>
+                           <li>Cisco WLC (9800, 5520)</li>
+                           <li>Cisco Meraki (MR46/56)</li>
+                           <li>RF Tuning</li>
+                           <li>FlexConnect</li>
+                           <li>High-Density Deployments</li>
                        </ul>`
             },
-            monitor: {
-                title: "NETWORK OBSERVABILITY",
-                body: `<p>Proactive monitoring ensures 99.99% uptime.</p>
+            rns: {
+                title: "ROUTING & SWITCHING",
+                body: `<p>Core Infrastructure Protocols</p>
                        <ul>
-                           <li><strong>SolarWinds NPM:</strong> Polling critical interfaces, CPU, and Memory.</li>
-                           <li><strong>LogicMonitor:</strong> Cloud-based collector management and custom dashboards.</li>
-                           <li><strong>Alerting:</strong> Setting thresholds for bandwidth utilization and CRC errors.</li>
+                           <li><strong>Protocols:</strong> OSPF, BGP, EIGRP, RIPv2</li>
+                           <li><strong>Features:</strong> VLANs, VRF, STP, EtherChannel, Port Security, DHCP Snooping</li>
                        </ul>`
             },
-            tshoot: {
-                title: "ADVANCED TROUBLESHOOTING",
-                body: `<p>Root Cause Analysis (RCA) methodology.</p>
-                       <div class="modal-cmd">
-                           <span>Router#</span> debug ip packet detail<br>
-                           <span>Router#</span> show ip route 0.0.0.0
-                       </div>
+            hardware: {
+                title: "HARDWARE PROFICIENCY",
+                body: `<p>Enterprise Grade Equipment</p>
                        <ul>
-                           <li>Tracing Asymmetric Routing issues in redundant links.</li>
-                           <li>Analyzing Wireshark captures for TCP retransmissions or resets.</li>
-                           <li>Resolving MTU mismatches in IPSec tunnels.</li>
+                           <li><strong>Switches:</strong> Cisco Catalyst 9200/9300/9500, Nexus, 4500/4948, 2960/3750</li>
+                           <li><strong>Routers:</strong> Cisco ISR 4000 Series (4431, 4351), 3900 Series</li>
+                       </ul>`
+            },
+            observe: {
+                title: "OBSERVABILITY TOOLS",
+                body: `<p>Monitoring & Analysis</p>
+                       <ul>
+                           <li>SolarWinds, LogicMonitor, PRTG, SCOM, Whatsup Gold</li>
+                           <li>Wireshark (Packet Analysis)</li>
+                           <li>BlueCoat Packet Shaper</li>
+                       </ul>`
+            },
+            itsm: {
+                title: "ITSM PLATFORMS",
+                body: `<p>Service Management</p>
+                       <ul>
+                           <li>ServiceNow</li>
+                           <li>Jira</li>
+                           <li>BMC Remedy</li>
+                           <li>SummitAI</li>
                        </ul>`
             },
             health: {
                 title: "MORNING HEALTH CHECKS",
                 body: `<p>Standard Operating Procedure (SOP) for start of shift.</p>
-                       <ol>
-                           <li>Verify Core Switch CPU < 40%.</li>
-                           <li>Check Firewall HA State (Active/Passive).</li>
-                           <li>Confirm ISP Primary Links are passing traffic.</li>
-                           <li>Review SolarWinds for any 'Down' nodes overnight.</li>
-                       </ol>`
+                        <ol>
+                            <li>Verify Core Switch CPU < 40%.</li>
+                            <li>Check Firewall HA State (Active/Passive).</li>
+                            <li>Confirm ISP Primary Links are passing traffic.</li>
+                            <li>Review SolarWinds for any 'Down' nodes overnight.</li>
+                        </ol>`
             },
             incident: {
                 title: "INCIDENT RESPONSE",
                 body: `<p>Handling P1/P2 Critical Outages.</p>
-                       <ul>
-                           <li><strong>Triage:</strong> Isolate the fault domain (LAN vs WAN vs App).</li>
-                           <li><strong>Restore:</strong> Failover to secondary links or rollback config.</li>
-                           <li><strong>RCA:</strong> Document timeline and prevent recurrence.</li>
-                       </ul>`
+                        <ul>
+                            <li><strong>Triage:</strong> Isolate the fault domain (LAN vs WAN vs App).</li>
+                            <li><strong>Restore:</strong> Failover to secondary links or rollback config.</li>
+                            <li><strong>RCA:</strong> Document timeline and prevent recurrence.</li>
+                        </ul>`
             },
             change: {
                 title: "CHANGE MANAGEMENT",
                 body: `<p>Executing changes within maintenance windows.</p>
-                       <ul>
-                           <li><strong>Pre-Change:</strong> Snapshot configs, verify backups.</li>
-                           <li><strong>Implementation:</strong> Apply ACLs, upgrade firmware, patch cables.</li>
-                           <li><strong>Post-Change:</strong> Verify connectivity and application status.</li>
-                       </ul>`
+                        <ul>
+                            <li><strong>Pre-Change:</strong> Snapshot configs, verify backups.</li>
+                            <li><strong>Implementation:</strong> Apply ACLs, upgrade firmware, patch cables.</li>
+                            <li><strong>Post-Change:</strong> Verify connectivity and application status.</li>
+                        </ul>`
             }
         };
 
